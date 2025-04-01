@@ -77,7 +77,6 @@ export class TaskCollection extends EntityTask {
           title: task.title,
           status: task.status,
           desc: task.desc,
-          date: task.date,
         });
 
       if (updatedRows) {

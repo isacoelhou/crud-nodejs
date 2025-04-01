@@ -21,15 +21,16 @@ async function carregarTarefas() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${statusTarefa(task.status)}</td>
-      <td>${(task.desc)}</td>
-      <td>${task.title}</td>
-      <td>${Number(task.date) ? formatarData(task.date) : task.date}</td>
-      <td>
-        <button class="btn btn-edit" onclick="editarTarefa(${task.id})">Editar</button>
-        <button class="btn btn-delete" onclick="apagarTarefa(${task.id})">Excluir</button>
-      </td>
-    `;
+    <td>${statusTarefa(task.status)}</td>
+    <td>${task.desc}</td>
+    <td>${task.title}</td>
+    <td>${Number(task.date) ? formatarData(task.date) : task.date}</td>
+    <td>
+      <button class="btn btn-edit" onclick="abrirModal(${task.id}, '${task.title}', '${task.desc}', ${task.status})">Editar</button>
+      <button class="btn btn-delete" onclick="apagarTarefa(${task.id})">Excluir</button>
+    </td>
+  `;
+  
 
     tableBody.appendChild(row);
   });
@@ -105,3 +106,42 @@ function statusTarefa(status) {
 }
 
 carregarTarefas();
+
+let idEdicao = null;
+function abrirModal(id, title, desc, status) {
+  document.getElementById("edit-title").value = title;
+  document.getElementById("edit-description").value = desc;
+  document.getElementById("edit-status").value = status;
+  
+  idEdicao = id + '.0';
+  
+  document.getElementById("edit-modal").style.display = "block";
+}
+
+function fecharModal() {
+  document.getElementById("edit-modal").style.display = "none";
+}
+
+async function salvarEdicao() {
+  const title = document.getElementById("edit-title").value;
+  const desc = document.getElementById("edit-description").value;
+  const status = document.getElementById("edit-status").value;
+
+  console.log(desc);
+
+  if (!title || !desc || status === null) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const updatedTask = { title, desc, status: parseInt(status) };
+
+  await fetch(`${API_URL}/${idEdicao}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedTask),
+  });
+
+  fecharModal();
+  carregarTarefas();
+}

@@ -24,5 +24,4 @@
     > npm run dev  
 
 4. Acesse a aplicação:  
-    > Pelo navegador através do link: 'http://127.0.0.1:3000`  
-    > Ou abra o arquivo HTML utilizando o Live Server ou diretamente no navegador.
+    > Abra o arquivo HTML utilizando o Live Server ou diretamente no navegador.

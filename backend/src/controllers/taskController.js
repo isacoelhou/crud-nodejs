@@ -22,14 +22,15 @@ router.post('/tasks', (req,res) => {
 })
 
 
-router.put('/tasks/:id', (req,res) => {
+router.put('/tasks/:id', (req, res) => {
     const { id } = req.params;
-    const { title, status, date } = req.body;
-    const task = new EntityTask(title, status, date);
-    
-    taskModel.updateTask(req,res, id, task);
-    
-})
+    const { title, status, desc } = req.body; 
+
+    const task = new EntityTask(title, status, desc); 
+
+    taskModel.updateTask(req, res, id, task);
+});
+
 
 router.delete('/tasks/:id', (req,res) => {
     const { id } = req.params;
