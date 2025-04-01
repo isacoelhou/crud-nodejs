@@ -4,7 +4,7 @@ import path from "path";
 const db = knex({
   client: "sqlite3",
   connection: {
-    filename: path.resolve("../database.sqlite"), // Usa um arquivo físico
+    filename: path.resolve("../database.sqlite"), 
   },
   useNullAsDefault: true,
   debug: true
