@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
+  <link rel="stylesheet" href="./src/style.css">
   <style>
-   
+
   </style>
 </head>
+
 <body>
-  <h1>To-Do List</h1>
+  <h1>Lista de Tarefas</h1>
 
   <div class="form-container">
-    <input type="text" id="task-title" placeholder="Título da Tarefa">
-    <input type="date" id="task-date">
-    <select id="task-status">
-      <option value="0">Pendente</option>
-      <option value="1">Andamento</option>
-      <option value="2">Concluído</option>
-    </select>
-    <button onclick="addTask()">Adicionar Tarefa</button>
+    <div class="title-container">
+      <div id="descrip">
+        <p>Insira o título da tarefa:</p>
+        <input type="text" id="task-title" placeholder="Título da Tarefa">
+      </div>
+      <div id="descrip">
+        <p>Selecione o estado que a tarefa se encontra:</p>
+        <select id="task-status">
+          <option value="0">Pendente</option>
+          <option value="1">Andamento</option>
+          <option value="2">Concluído</option>
+        </select>
+      </div>
+    </div>
+    <div class="description-container">
+      <div id="descrip">
+        <p>Adicione a descrição da tarefa (opcional):</p>
+        <textarea id="task-description" placeholder="Descrição da Tarefa"></textarea>
+      </div>
+      <br>
+      <button onclick="addTask()">Adicionar Tarefa</button>
+    </div>
   </div>
 
   <table>
